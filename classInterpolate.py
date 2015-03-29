@@ -28,14 +28,17 @@ class Interpolate:
             else:
                 s=s+(' '+str(result[i])+'x^'+str(i))
         s=s+' = 0'
-        x=np.linspace(-50, 50, 500)
-        y=sum([x**i for i in range(len(result)-1, -1, -1)])
+        x=np.linspace(-20, 20, 500)
+        y=sum([result[i]*(x**i) for i in range(len(result)-1, -1, -1)])
         plt.figure()
-        plt.title('Lagrange Method')
+        plt.title('Lagrange\'s Method')
         plt.xlabel('x')
         plt.ylabel('y')
-        plt.text(-25, max(y), s)
-        plt.plot(x, y, 'b')
+        plt.plot(x, y, 'b', label=s)
+        plt.plot(L[0], M[0], 'ro', label='Node Points')
+        for i in range(1, len(L)):
+            plt.plot(L[i], M[i], 'ro')
+        plt.legend(loc='upper right', numpoints=1)
         plt.show()
         return s
                                              
@@ -61,14 +64,17 @@ class Interpolate:
             else:
                 s=s+(' '+str(result[i])+'x^'+str(i))
         s=s+' = 0'
-        x=np.linspace(-50, 50, 500)
-        y=sum([x**i for i in range(len(result)-1, -1, -1)])
+        x=np.linspace(-20, 20, 500)
+        y=sum([result[i]*(x**i) for i in range(len(result)-1, -1, -1)])
         plt.figure()
-        plt.title('Newton Method')
+        plt.title('Newton\'s Method')
         plt.xlabel('x')
         plt.ylabel('y')
-        plt.text(-25, max(y), s)
-        plt.plot(x, y, 'g')
+        plt.plot(x, y, 'g', label=s)
+        plt.plot(L[0], M[0], 'ro', label='Node Points')
+        for i in range(1, len(L)):
+            plt.plot(L[i], M[i], 'ro')
+        plt.legend(loc='upper right', numpoints=1)
         plt.show()
         return s
 
