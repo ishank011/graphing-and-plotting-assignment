@@ -18,9 +18,21 @@ class Interpolate:
         for i in range(1,n):
             w=P.polymul(w,(-1*L[i],1))                                    
         result=np.array([0.0 for i in range(len(w)-1)])                    
-        derivative=P.polyder(w)                                             
+        derivative=P.polyder(w)
+        plt.figure()
+        plt.title('Lagrange\'s Method')
+        plt.xlabel('x')
+        plt.ylabel('y')
+        x=np.linspace(-20, 20, 500)                                           
         for i in range(n):
-            result+=(P.polydiv(w,(-1*L[i],1))[0]*M[i])/P.polyval(L[i],derivative)   
+            temp=(P.polydiv(w,(-1*L[i],1))[0])/P.polyval(L[i],derivative)
+            y=sum([temp[i]*(x**i) for i in range(len(result)-1, -1, -1)])
+            if i==0:
+                plt.plot(x, y, 'g--', label='Fundamental Polynomials')
+            else:
+                plt.plot(x, y, 'g--')
+            temp*=M[i]
+            result+=temp
         s=''
         for i in range(len(result)-1, -1, -1):
             if result[i]>=0:
@@ -28,12 +40,7 @@ class Interpolate:
             else:
                 s=s+(' '+str(result[i])+'x^'+str(i))
         s=s+' = 0'
-        x=np.linspace(-20, 20, 500)
         y=sum([result[i]*(x**i) for i in range(len(result)-1, -1, -1)])
-        plt.figure()
-        plt.title('Lagrange\'s Method')
-        plt.xlabel('x')
-        plt.ylabel('y')
         plt.plot(x, y, 'b', label=s)
         plt.plot(L[0], M[0], 'ro', label='Node Points')
         for i in range(1, len(L)):
@@ -64,7 +71,7 @@ class Interpolate:
             else:
                 s=s+(' '+str(result[i])+'x^'+str(i))
         s=s+' = 0'
-        x=np.linspace(-20, 20, 500)
+        x=np.linspace(-10, 10, 500)
         y=sum([result[i]*(x**i) for i in range(len(result)-1, -1, -1)])
         plt.figure()
         plt.title('Newton\'s Method')
@@ -79,7 +86,7 @@ class Interpolate:
         return s
 
 
-apx=Interpolate()                                                          
-for method in ["newton","lagrange"]:
-    solution=apx.solve([1,2,3],[0,-1,0],method)
-    print(solution)
+#apx=Interpolate()                                                          
+#for method in ["newton","lagrange"]:
+#    solution=apx.solve([1,2,3,7],[0,-1,0,5],method)
+#    print(solution)
