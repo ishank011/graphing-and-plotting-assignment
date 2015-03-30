@@ -21,8 +21,8 @@ class Interpolate:
         derivative=P.polyder(w)
         plt.figure()
         plt.title('Lagrange\'s Method')
-        plt.xlabel('x')
-        plt.ylabel('y')
+        plt.xlabel('X-axis')
+        plt.ylabel('Y-axis')
         x=np.linspace(-20, 20, 500)                                           
         for i in range(n):
             temp=(P.polydiv(w,(-1*L[i],1))[0])/P.polyval(L[i],derivative)
@@ -75,8 +75,8 @@ class Interpolate:
         y=sum([result[i]*(x**i) for i in range(len(result)-1, -1, -1)])
         plt.figure()
         plt.title('Newton\'s Method')
-        plt.xlabel('x')
-        plt.ylabel('y')
+        plt.xlabel('X-axis')
+        plt.ylabel('Y-axis')
         plt.plot(x, y, 'c', label=s)
         plt.plot(L[0], M[0], 'ro', label='Node Points')
         for i in range(1, len(L)):
