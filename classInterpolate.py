@@ -77,7 +77,7 @@ class Interpolate:
         plt.title('Newton\'s Method')
         plt.xlabel('x')
         plt.ylabel('y')
-        plt.plot(x, y, 'g', label=s)
+        plt.plot(x, y, 'c', label=s)
         plt.plot(L[0], M[0], 'ro', label='Node Points')
         for i in range(1, len(L)):
             plt.plot(L[i], M[i], 'ro')
